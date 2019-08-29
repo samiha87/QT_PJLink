@@ -6,6 +6,7 @@
 #include <QAbstractSocket>
 #include <QDebug>
 #include <QByteArray>
+#include <QTimer>
 
 #include "tcpsocket.h"
 #define PJLINK_PORT 4352
@@ -43,9 +44,23 @@ class PJLink : public QObject
         Projector_failure
     };
 
+    enum Projector_Channels {
+        Channel_RGB,
+        Channel_VIDEO,
+        Channel_DIGITAL,
+        Channel_STORAGE,
+        Channel_NETWORK
+    };
+
 public:
     explicit PJLink(QObject *parent = nullptr);
     void setPower(bool state);
+
+    void setVideoMute(bool state);
+    void setAudioMute(bool state);
+    void setAVMute(bool state);
+
+    void setInput(Projector_Channels input);
     void setIpAddress(QString ip);
     void setPassword(QString pass);
     void setPort(int port);
@@ -59,7 +74,6 @@ private:
     QString ipAddress;
     QString password;
     QString pendingCommand;
-    bool powerState;
 
     bool connected;
     int port;
@@ -68,6 +82,10 @@ private:
     void sendCommand(QString cmd);
     void requestStatus();
     QByteArray md5hash(QByteArray message);
+
+    int lampHours;
+    bool powerState;
+
 
 };
 

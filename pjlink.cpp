@@ -19,6 +19,58 @@ void PJLink::setPower(bool state) {
     }
 }
 
+void PJLink::setVideoMute(bool state) {
+    if(state) {
+        // Set on
+        sendCommand("%1AVMT 11");
+    } else {
+        // Set off
+        sendCommand("%1AVMT 10");
+    }
+}
+
+void PJLink::setAudioMute(bool state) {
+    if(state) {
+        // Set on
+        sendCommand("%1AVMT 21");
+    } else {
+        // Set off
+        sendCommand("%1AVMT 20");
+    }
+}
+
+void PJLink::setAVMute(bool state) {
+    if(state) {
+        // Set on
+        sendCommand("%1AVMT 31");
+    } else {
+        // Set off
+        sendCommand("%1AVMT 30");
+    }
+}
+
+void PJLink::setInput(Projector_Channels input) {
+    switch (input) {
+    case Channel_DIGITAL:
+        sendCommand("%1INPT 31");
+    break;
+    case Channel_NETWORK:
+        sendCommand("%1INPT 51");
+    break;
+    case Channel_RGB:
+        sendCommand("%1INPT 11");
+    break;
+    case Channel_STORAGE:
+        sendCommand("%1INPT 41");
+    break;
+    case Channel_VIDEO:
+        sendCommand("%1INPT 22");
+    break;
+    default:
+        break;
+    }
+}
+
 void PJLink::requestStatus() {
     // request power status
     sendCommand("POWR?");
@@ -46,7 +98,6 @@ void PJLink::setPort(int port) {
 void PJLink::response(QByteArray msg) {
     qDebug() << "PJLINK::response()" << msg;
     // Parse
-
     if(msg.contains("PJLINK 1")) {
         // Remove PJLINK 1 , 9 bits
         QByteArray random_number = msg.remove(0, 9);
@@ -60,7 +111,6 @@ void PJLink::response(QByteArray msg) {
         sock->send(hashedMessage);
         pendingCommand.clear();
     }
-
 }
 
 QByteArray PJLink::md5hash(QByteArray message) {
