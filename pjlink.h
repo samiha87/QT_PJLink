@@ -66,27 +66,34 @@ public:
     void setPort(int port);
 
 signals:
-
+    void projectorStatus(QByteArray msg);
 public slots:
     void response(QByteArray msg);
-
+    void requestStatusPwr();
+    void requestStatus();
+    void requestInput();
+    void requestAVMute();
+    void requestLamp();
 private:
     QString ipAddress;
     QString password;
     QString pendingCommand;
+    QTimer *timer;
 
     bool connected;
     int port;
     tcpsocket *sock;
 
     void sendCommand(QString cmd);
-    void requestStatus();
+
     QByteArray md5hash(QByteArray message);
 
     int lampHours;
     bool powerState;
-
-
+    int requestPoll;
+    int projVolume = 0;
+    int projInput = 0;
+    int projLamp = 0;
 };
 
 #endif // PJLINK_H
