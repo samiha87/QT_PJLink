@@ -5,7 +5,7 @@ Tested with Sanyo PLC Projector
 /* Authentication test on ubuntu
  * 1. Download packet sender
  * 2. Connect to PJLink projector
- * 3. send packet with persistent connection
+ * 3. send packet(Keep alive connection)
  * 4. PJlink will reply with PJLINK <class> <random number> <CR>
  * 5. Create MD5 hash of wth the random number and password.
  *    https://www.md5hashgenerator.com/
