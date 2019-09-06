@@ -10,8 +10,8 @@ Tested with Sanyo PLC Projector
  * 5. Create MD5 hash of wth the random number and password.
  *    https://www.md5hashgenerator.com/
  *    MD5( (random number) + your password).
- *    The hashed string is constructed as follows <random_numer><your_password>
- * 6. Send the hashed string and command in same packet to Projector
+ *    Hashed string is constructed as follows <random_numer><your_password>
+ * 6. Send hashed string and command in same packet to projector.
  * 7. Projetor response random response, if PJLINK ERRA is returend. Hashed string was wrong.
  * Example, Password 1323, command %1POWR 1
  * Connect
