@@ -1,4 +1,4 @@
-# QT_PJLink
+# Qt_PJLink
 PJLink for Qt with authentication .
 Tested with Sanyo PLC Projector
 
