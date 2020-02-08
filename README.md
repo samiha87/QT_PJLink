@@ -1,6 +1,7 @@
 # Qt_PJLink
-PJLink for Qt with authentication .
-Tested with Sanyo PLC Projector
+PJLink for Qt with authentication.
+
+Tested with Sanyo PLC Projector.
 
 /* Authentication test on ubuntu
  * 1. Download packet sender
